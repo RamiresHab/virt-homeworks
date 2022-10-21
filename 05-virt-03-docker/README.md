@@ -99,7 +99,8 @@ This is test second file
 
 Соберите Docker образ с Ansible, загрузите на Docker Hub и пришлите ссылку вместе с остальными ответами к задачам.
 
-
+Ответ:
+https://hub.docker.com/repository/docker/ramireshab/alpine-netology
 ---
 
 ### Как cдавать задание
