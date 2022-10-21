@@ -42,6 +42,7 @@ Ansible позволяет использовать существующую ssh
 *Приложить вывод команд установленных версий каждой из программ, оформленный в markdown.*
 
 Ответ:
+```
 vagrant@vagrant:~$ ansible --version
 ansible 2.9.6
   config file = /etc/ansible/ansible.cfg
@@ -57,6 +58,7 @@ vagrant@vagrant:~$ virtualbox --help
 Oracle VM VirtualBox VM Selector v6.1.38_Ubuntu
 (C) 2005-2022 Oracle Corporation
 All rights reserved.
+```
 
 ## Задача 4 (*)
 
