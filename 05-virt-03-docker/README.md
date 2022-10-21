@@ -34,6 +34,9 @@ Hey, Netology
 ```
 Опубликуйте созданный форк в своем репозитории и предоставьте ответ в виде ссылки на https://hub.docker.com/username_repo.
 
+Ответ:
+https://hub.docker.com/repository/docker/ramireshab/nginx-netology
+
 ## Задача 2
 
 Посмотрите на сценарий ниже и ответьте на вопрос:
@@ -54,6 +57,9 @@ Hey, Netology
 - MongoDB, как основное хранилище данных для java-приложения;
 - Gitlab сервер для реализации CI/CD процессов и приватный (закрытый) Docker Registry.
 
+Ответ:
+Все перечисленные варианты можно использовать в формате docker контейнеров, запущенных на виртуальной машине или физическом сервере, так как это удобно и позволяет решить проблемы с зависимостями приложений и библиотек и не влияет на производительность. Если приложение работает в кластерном режиме (например, Elasticsearch), то рекомендуется разнести контейнеры на разные виртуальные машины, чтобы убрать единую точку отказа. Такие контейнеры надо связать единой сетью overlay. Я бы также порекомендовал запустить MongoDB на отдельном сервере или виртуальной машине, так как это СУБД и могут возникнуть проблемы при работе в контейнере.
+
 ## Задача 3
 
 - Запустите первый контейнер из образа ***centos*** c любым тэгом в фоновом режиме, подключив папку ```/data``` из текущей рабочей директории на хостовой машине в ```/data``` контейнера;
@@ -61,6 +67,29 @@ Hey, Netology
 - Подключитесь к первому контейнеру с помощью ```docker exec``` и создайте текстовый файл любого содержания в ```/data```;
 - Добавьте еще один файл в папку ```/data``` на хостовой машине;
 - Подключитесь во второй контейнер и отобразите листинг и содержание файлов в ```/data``` контейнера.
+
+Ответ:
+vagrant@vagrant:~$ sudo docker run -v /home/vagrant/data:/data -it -d debian bash
+93f88d9f86c7f88eaa8235b7078387fe7746e17e3133bf73a06285c89f92270d
+vagrant@vagrant:~$ sudo docker run -v /home/vagrant/data:/data -it -d centos bash
+24a583d616391244f33f5a2ad1448e8a42a0143666af31eb5b98a53a07ad259b
+vagrant@vagrant:~$ sudo docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED          STATUS          PORTS     NAMES
+24a583d61639   centos    "bash"    4 seconds ago    Up 3 seconds              modest_antonelli
+93f88d9f86c7   debian    "bash"    17 seconds ago   Up 16 seconds             brave_boyd
+vagrant@vagrant:~$ sudo docker exec -it modest_antonelli bash
+[root@24a583d61639 /]# echo "This is test file" > /data/testfile
+[root@24a583d61639 /]# exit
+vagrant@vagrant:~$ echo "This is test second file" > /home/vagrant/data/secondtestfile
+vagrant@vagrant:~$ sudo docker exec -it brave_boyd bash
+root@93f88d9f86c7:/# ls -l /data/
+total 8
+-rw-rw-r-- 1 1000 1000 25 Oct 21 10:57 secondtestfile
+-rw-r--r-- 1 root root 18 Oct 21 10:57 testfile
+root@93f88d9f86c7:/# cat /data/testfile
+This is test file
+root@93f88d9f86c7:/# cat /data/secondtestfile
+This is test second file
 
 ## Задача 4 (*)
 
