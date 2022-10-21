@@ -69,6 +69,7 @@ https://hub.docker.com/repository/docker/ramireshab/nginx-netology
 - Подключитесь во второй контейнер и отобразите листинг и содержание файлов в ```/data``` контейнера.
 
 Ответ:
+```
 vagrant@vagrant:~$ sudo docker run -v /home/vagrant/data:/data -it -d debian bash
 93f88d9f86c7f88eaa8235b7078387fe7746e17e3133bf73a06285c89f92270d
 vagrant@vagrant:~$ sudo docker run -v /home/vagrant/data:/data -it -d centos bash
@@ -90,6 +91,7 @@ root@93f88d9f86c7:/# cat /data/testfile
 This is test file
 root@93f88d9f86c7:/# cat /data/secondtestfile
 This is test second file
+```
 
 ## Задача 4 (*)
 
