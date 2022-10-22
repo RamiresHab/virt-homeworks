@@ -22,6 +22,10 @@
   <img width="1200" height="600" src="./assets/yc_01.png">
 </p>
 
+Ответ:
+<img width="1009" alt="image" src="https://user-images.githubusercontent.com/46669220/197349359-9c3a5d76-1b31-42a8-812c-c8a6e14b616b.png">
+
+
 ## Задача 3
 
 Создать ваш первый готовый к боевой эксплуатации компонент мониторинга, состоящий из стека микросервисов.
