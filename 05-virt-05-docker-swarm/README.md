@@ -43,6 +43,20 @@ fc68kwxng4jpolrw624vyukxs     node05.netology.yc   Ready     Active             
 docker service ls
 ```
 
+Ответ:
+```
+[centos@node01 ~]$ sudo docker service ls
+ID             NAME                                MODE         REPLICAS   IMAGE                                          PORTS
+cfyvhtk90oxi   swarm_monitoring_alertmanager       replicated   1/1        stefanprodan/swarmprom-alertmanager:v0.14.0
+3sz8qkahjj0t   swarm_monitoring_caddy              replicated   1/1        stefanprodan/caddy:latest                      *:3000->3000/tcp, *:9090->9090/tcp, *:9093-9094->9093-9094/tcp
+543f9v0k9tb0   swarm_monitoring_cadvisor           global       6/6        google/cadvisor:latest
+xe44cgm8es7r   swarm_monitoring_dockerd-exporter   global       6/6        stefanprodan/caddy:latest
+s1c67skrd65h   swarm_monitoring_grafana            replicated   1/1        stefanprodan/swarmprom-grafana:5.3.4
+qi2wwrh0kx8w   swarm_monitoring_node-exporter      global       6/6        stefanprodan/swarmprom-node-exporter:v0.16.0
+tdlu5wepx4l5   swarm_monitoring_prometheus         replicated   1/1        stefanprodan/swarmprom-prometheus:v2.5.0
+okt2j8ubm7e8   swarm_monitoring_unsee              replicated   1/1        cloudflare/unsee:v0.8.0
+```
+
 ## Задача 4 (*)
 
 Выполнить на лидере Docker Swarm кластера команду (указанную ниже) и дать письменное описание её функционала, что она делает и зачем она нужна:
