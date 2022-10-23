@@ -64,7 +64,20 @@ okt2j8ubm7e8   swarm_monitoring_unsee              replicated   1/1        cloud
 # см.документацию: https://docs.docker.com/engine/swarm/swarm_manager_locking/
 docker swarm update --autolock=true
 ```
+Ответ:
+```
+[centos@node01 ~]$ sudo docker swarm update --autolock=true
+Swarm updated.
+To unlock a swarm manager after it restarts, run the `docker swarm unlock`
+command and provide the following key:
 
+    SWMKEY-1-A7bBo5QSfPBFitsraV8SNXI8RVe355lgIz+we1soN1o
+
+Please remember to store this key in a password manager, since without it you
+will not be able to restart the manager.
+```
+
+Таким образом я залочил TLS ключи для связи между нодами и ключи для расшифрофки RAFT логов. Теперь после перезагрузки докера мне нужно будет ввести выданный мне ключ, чтобы docker swarm начал работать. Это нужно для того, чтобы злоумышленники не похитили ключи, хранящиеся на ноде. 
 
 ---
 
