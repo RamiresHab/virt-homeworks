@@ -23,7 +23,16 @@ docker node ls
 ```
 
 Ответ:
-
+```
+[centos@node01 ~]$ sudo docker node ls
+ID                            HOSTNAME             STATUS    AVAILABILITY   MANAGER STATUS   ENGINE VERSION
+rnnkplc0f3n1pe01plaqzguwu *   node01.netology.yc   Ready     Active         Leader           20.10.20
+pgzp8ph96vbgp27p3tzp7hw2x     node02.netology.yc   Ready     Active         Reachable        20.10.20
+3i80fivg2oyapl7p8zv8m6p9a     node03.netology.yc   Ready     Active         Reachable        20.10.20
+y8wcat15exstoc4bt0vmy6bf6     node04.netology.yc   Ready     Active                          20.10.20
+fc68kwxng4jpolrw624vyukxs     node05.netology.yc   Ready     Active                          20.10.20
+9jjo5hxpk5r4x60ic6dp6zwwf     node06.netology.yc   Ready     Active                          20.10.20
+```
 
 ## Задача 3
 
