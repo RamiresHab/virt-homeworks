@@ -12,6 +12,31 @@
 
 Приведите получившуюся команду или docker-compose манифест.
 
+Ответ:
+Я воспользовался рекомендациями команды разработчиков PostgreSQL и добавил примонтируемые Volumes. В итоге получился такой конфиг:
+```
+$ cat docker-compose.yaml
+# docker-compose.yml
+version: '3.1'
+services:
+  db:
+    image: postgres:12
+    restart: always
+    volumes:
+      - ./data:/var/lib/psql/data
+      - ./backup:/backup
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: example
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+      ```
+
 ## Задача 2
 
 В БД из задачи 1: 
