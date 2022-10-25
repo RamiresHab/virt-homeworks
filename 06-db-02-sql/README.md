@@ -35,7 +35,7 @@ services:
     restart: always
     ports:
       - 8080:8080
-      ```
+```
 
 ## Задача 2
 
