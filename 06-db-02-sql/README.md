@@ -110,6 +110,13 @@ WHERE
 |clients|заказ|integer|
 
 3.
+select distinct grantee from information_schema.table_privileges where table_catalog = 'test_db'
+
+|grantee|
+|-------|
+|PUBLIC|
+|postgres|
+
    
 ## Задача 3
 
