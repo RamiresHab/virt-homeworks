@@ -74,6 +74,7 @@ services:
 |13457|template0|10|6|en_US.utf8|en_US.utf8|true|false|
 
 2.
+```
 SELECT 
    table_name, 
    column_name, 
@@ -82,13 +83,15 @@ FROM
    information_schema.columns
 WHERE 
    table_name = 'orders'
-   
+ ```
+ 
 |table_name|column_name|data_type|
 |----------|-----------|---------|
 |orders|id|integer|
 |orders|наименование|text|
 |orders|цена|integer|
 
+```
 SELECT 
    table_name, 
    column_name, 
@@ -97,7 +100,8 @@ FROM
    information_schema.columns
 WHERE 
    table_name = 'clients'
-   
+```
+ 
 |table_name|column_name|data_type|
 |----------|-----------|---------|
 |clients|id|integer|
@@ -136,6 +140,34 @@ WHERE
 - приведите в ответе:
     - запросы 
     - результаты их выполнения.
+
+Ответ:
+```
+insert into orders (наименование, цена) values
+	('Шоколад', 10),
+	('Принтер', 3000),
+	('Книга', 500),
+	('Монитор', 7000),
+	('Гитара', 4000)
+insert into clients (фамилия, "страна проживания") values
+	('Иванов Иван Иванович', 'USA'),
+	('Петров Петр Петрович', 'Canada'),
+	('Иоганн Себастьян Бах', 'Japan'),
+	('Ронни Джеймс Дио', 'Russia'),
+	('Ritchie Blackmore', 'Russia') 
+```
+select count(*) from orders
+
+|count|
+|-----|
+|5|
+
+select count(*) from clients
+
+|count|
+|-----|
+|5|
+
 
 ## Задача 4
 
