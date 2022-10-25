@@ -63,6 +63,50 @@ services:
 - SQL-запрос для выдачи списка пользователей с правами над таблицами test_db
 - список пользователей с правами над таблицами test_db
 
+Ответ:
+1. select * from pg_catalog.pg_database 
+
+|oid|datname|datdba|encoding|datcollate|datctype|datistemplate|datallowconn|
+|---|-------|------|--------|----------|--------|-------------|------------|
+|13458|postgres|10|6|en_US.utf8|en_US.utf8|false|true|
+|16384|test_db|10|6|en_US.utf8|en_US.utf8|false|true|
+|1|template1|10|6|en_US.utf8|en_US.utf8|true|true|
+|13457|template0|10|6|en_US.utf8|en_US.utf8|true|false|
+
+2.
+SELECT 
+   table_name, 
+   column_name, 
+   data_type 
+FROM 
+   information_schema.columns
+WHERE 
+   table_name = 'orders'
+   
+|table_name|column_name|data_type|
+|----------|-----------|---------|
+|orders|id|integer|
+|orders|наименование|text|
+|orders|цена|integer|
+
+SELECT 
+   table_name, 
+   column_name, 
+   data_type 
+FROM 
+   information_schema.columns
+WHERE 
+   table_name = 'clients'
+   
+|table_name|column_name|data_type|
+|----------|-----------|---------|
+|clients|id|integer|
+|clients|фамилия|text|
+|clients|страна проживания|text|
+|clients|заказ|integer|
+
+3.
+   
 ## Задача 3
 
 Используя SQL синтаксис - наполните таблицы следующими тестовыми данными:
