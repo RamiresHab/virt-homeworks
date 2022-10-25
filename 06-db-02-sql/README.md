@@ -240,6 +240,17 @@ Explain говорит нам, что планировщик сначала вы
 
 Приведите список операций, который вы применяли для бэкапа данных и восстановления. 
 
+Ответ:
+
+```
+$ sudo docker exec 06-db-02-sql_db_1 /bin/bash -c "pg_dump -U postgres -Fc test_db > /backup/db.dump"
+$ sudo docker-compose down
+... update docker-compose.yamp...
+$ sudo docker-compose up -d
+Создал базу test_db на новом сервере командой create database test_db
+$ sudo docker exec 06-db-02-sql_db2_1 /bin/bash -c "pg_restore -U postgres -d test_db /backup/db.dump"
+```
+
 ---
 
 ### Как cдавать задание
