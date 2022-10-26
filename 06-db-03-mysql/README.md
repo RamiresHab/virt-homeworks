@@ -148,6 +148,27 @@ select count(*) from orders where price > 300
 Используя таблицу INFORMATION_SCHEMA.USER_ATTRIBUTES получите данные по пользователю `test` и 
 **приведите в ответе к задаче**.
 
+Ответ:
+
+```
+CREATE USER 'test'
+  IDENTIFIED WITH mysql_native_password BY 'test-pass'
+  PASSWORD EXPIRE INTERVAL 180 DAY
+  FAILED_LOGIN_ATTEMPTS 3
+  ATTRIBUTE '{"fname": "James", "lname": "Pretty"}'
+
+alter USER 'test' with MAX_QUERIES_PER_HOUR 100
+
+GRANT SELECT on test_db.* to 'test'
+
+select * from INFORMATION_SCHEMA.USER_ATTRIBUTES where user='test'
+```
+
+|USER|HOST|ATTRIBUTE|
+|----|----|---------|
+|test|%|{"fname": "James", "lname": "Pretty"}|
+
+
 ## Задача 3
 
 Установите профилирование `SET profiling = 1`.
@@ -158,6 +179,61 @@ select count(*) from orders where price > 300
 Измените `engine` и **приведите время выполнения и запрос на изменения из профайлера в ответе**:
 - на `MyISAM`
 - на `InnoDB`
+
+Ответ:
+```
+SELECT TABLE_NAME, ENGINE
+FROM   information_schema.TABLES
+WHERE  TABLE_SCHEMA = 'test_db'
+```
+
+|TABLE_NAME|ENGINE|
+|----------|------|
+|orders|InnoDB|
+
+|Query_ID|Duration|Query|
+|--------|--------|-----|
+|2|0.0006515|/* ApplicationName=DBeaver 22.2.3 - SQLEditor <Script-2.sql> */ SELECT DATABASE()|
+|3|0.00076975|/* ApplicationName=DBeaver 22.2.3 - SQLEditor <Script-2.sql> */ SET SQL_SELECT_LIMIT=200|
+|4|0.0006195|SHOW WARNINGS|
+|5|0.00058175|/* ApplicationName=DBeaver 22.2.3 - SQLEditor <Script-2.sql> */ SET SQL_SELECT_LIMIT=DEFAULT|
+|6|0.0004865|/* ApplicationName=DBeaver 22.2.3 - SQLEditor <Script-2.sql> */ SELECT DATABASE()|
+|7|0.00033275|/* ApplicationName=DBeaver 22.2.3 - SQLEditor <Script-2.sql> */ SET SQL_SELECT_LIMIT=200|
+|8|0.00039775|/* ApplicationName=DBeaver 22.2.3 - SQLEditor <Script-2.sql> */ SHOW ENGINE|
+|9|0.0008255|/* ApplicationName=DBeaver 22.2.3 - SQLEditor <Script-2.sql> */ SHOW ENGINES|
+|10|0.0007805|/* ApplicationName=DBeaver 22.2.3 - SQLEditor <Script-2.sql> */ SET SQL_SELECT_LIMIT=DEFAULT|
+|11|0.00066675|/* ApplicationName=DBeaver 22.2.3 - SQLEditor <Script-2.sql> */ SELECT DATABASE()|
+|12|0.00179725|/* ApplicationName=DBeaver 22.2.3 - SQLEditor <Script-2.sql> */ SELECT TABLE_NAME, ENGINE FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'test_db' LIMIT 0, 200|
+|13|0.00068575|/* ApplicationName=DBeaver 22.2.3 - SQLEditor <Script-2.sql> */ SELECT DATABASE()|
+|14|0.00163675|/* ApplicationName=DBeaver 22.2.3 - SQLEditor <Script-2.sql> */ SELECT TABLE_NAME, ENGINE FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'test_db' LIMIT 0, 200|
+|15|0.00070775|/* ApplicationName=DBeaver 22.2.3 - SQLEditor <Script-2.sql> */ SELECT DATABASE()|
+|16|0.000388|/* ApplicationName=DBeaver 22.2.3 - SQLEditor <Script-2.sql> */ SET SQL_SELECT_LIMIT=200|
+
+alter table orders ENGINE='MyISAM'
+
+|TABLE_NAME|ENGINE|
+|----------|------|
+|orders|MyISAM|
+
+|Query_ID|Duration|Query|
+|--------|--------|-----|
+|17|0.00068725|SHOW WARNINGS|
+|18|0.00060525|/* ApplicationName=DBeaver 22.2.3 - SQLEditor <Script-2.sql> */ SET SQL_SELECT_LIMIT=DEFAULT|
+|19|0.00084425|/* ApplicationName=DBeaver 22.2.3 - SQLEditor <Script-2.sql> */ SELECT DATABASE()|
+|20|0.00067025|SELECT @@session.transaction_read_only|
+|21|0.0002875|/* ApplicationName=DBeaver 22.2.3 - SQLEditor <Script-2.sql> */ alter DATABASE test_db ENGINE = MyISAM|
+|22|0.00081825|SELECT @@session.transaction_read_only|
+|23|0.00057975|/* ApplicationName=DBeaver 22.2.3 - SQLEditor <Script-2.sql> */ alter DATABASE test_db ENGINE = 'MyISAM'|
+|24|0.001026|SELECT @@session.transaction_read_only|
+|25|0.00047|/* ApplicationName=DBeaver 22.2.3 - SQLEditor <Script-2.sql> */ alter DATABASE test_db ENGINE='MyISAM'|
+|26|0.00030025|SELECT @@session.transaction_read_only|
+|27|0.2089825|/* ApplicationName=DBeaver 22.2.3 - SQLEditor <Script-2.sql> */ alter table orders ENGINE='MyISAM'|
+|28|0.00066375|/* ApplicationName=DBeaver 22.2.3 - SQLEditor <Script-2.sql> */ SELECT DATABASE()|
+|29|0.001567|/* ApplicationName=DBeaver 22.2.3 - SQLEditor <Script-2.sql> */ SELECT TABLE_NAME, ENGINE FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'test_db' LIMIT 0, 200|
+|30|0.00026|/* ApplicationName=DBeaver 22.2.3 - SQLEditor <Script-2.sql> */ SELECT DATABASE()|
+|31|0.00057975|/* ApplicationName=DBeaver 22.2.3 - SQLEditor <Script-2.sql> */ SET SQL_SELECT_LIMIT=200|
+
+
 
 ## Задача 4 
 
