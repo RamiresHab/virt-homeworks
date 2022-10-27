@@ -15,6 +15,35 @@
 - вывода описания содержимого таблиц
 - выхода из psql
 
+Ответ:
+```
+vagrant@vagrant:~/06-db-04-postgresql$ sudo docker exec -it 06-db-04-postgresql_db_1 psql -U postgres
+psql (13.8 (Debian 13.8-1.pgdg110+1))
+Type "help" for help.
+
+postgres-# \l # Вывод списка БД
+                                 List of databases
+   Name    |  Owner   | Encoding |  Collate   |   Ctype    |   Access privileges   
+-----------+----------+----------+------------+------------+-----------------------
+ postgres  | postgres | UTF8     | en_US.utf8 | en_US.utf8 | 
+ template0 | postgres | UTF8     | en_US.utf8 | en_US.utf8 | =c/postgres          +
+           |          |          |            |            | postgres=CTc/postgres
+ template1 | postgres | UTF8     | en_US.utf8 | en_US.utf8 | =c/postgres          +
+           |          |          |            |            | postgres=CTc/postgres
+(3 rows)
+
+postgres-# \c # Вывод списка коннектов
+You are now connected to database "postgres" as user "postgres".
+
+postgres-# \dt # Вывод списка таблиц
+Did not find any relations.
+
+postgres-# \d TABLE_NAME # Вывод описания таблицы TABLE_NAME
+Did not find any relation named "TABLE_NAME".
+
+postgres-# \q # Выход из утилиты psql
+```
+
 ## Задача 2
 
 Используя `psql` создайте БД `test_database`.
