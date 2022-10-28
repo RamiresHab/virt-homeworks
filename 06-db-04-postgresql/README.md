@@ -61,6 +61,16 @@ postgres-# \q # Выход из утилиты psql
 
 **Приведите в ответе** команду, которую вы использовали для вычисления и полученный результат.
 
+Ответ:
+```
+SELECT tablename, attname, avg_width from pg_stats where tablename = 'orders' order by avg_width desc limit 1 
+```
+
+|tablename|attname|avg_width|
+|---------|-------|---------|
+|orders|title|16|
+
+
 ## Задача 3
 
 Архитектор и администратор БД выяснили, что ваша таблица orders разрослась до невиданных размеров и
