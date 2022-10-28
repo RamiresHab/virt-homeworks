@@ -104,6 +104,16 @@ CREATE TABLE orders2 PARTITION OF orders FOR VALUES > 499;
 
 Как бы вы доработали бэкап-файл, чтобы добавить уникальность значения столбца `title` для таблиц `test_database`?
 
+Ответ:
+Я дописал UNIQUE в декларативное описания поля title на этапе CREATE TABLE
+```
+CREATE TABLE public.orders (
+    id integer NOT NULL,
+    title character varying(80) NOT NULL UNIQUE,
+    price integer DEFAULT 0
+);
+```
+
 ---
 
 ### Как cдавать задание
