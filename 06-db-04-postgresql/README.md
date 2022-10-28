@@ -81,6 +81,23 @@ SELECT tablename, attname, avg_width from pg_stats where tablename = 'orders' or
 
 Можно ли было изначально исключить "ручное" разбиение при проектировании таблицы orders?
 
+Ответ:
+```
+begin;
+create table orders1 (check ( price > 499)) inherits (orders);
+create table orders2 (check ( price <= 499)) inherits (orders);
+ALTER TABLE ONLY orders1 ADD CONSTRAINT orders1__pkey PRIMARY KEY (id);
+ALTER TABLE ONLY orders2 ADD CONSTRAINT orders2__pkey PRIMARY KEY (id);
+create rule orders_insert_1 as on insert to orders where ( price > 499 ) do instead insert into orders1 values (new.*);
+create rule orders_insert_2 as on insert to orders where ( price <= 499 ) do instead insert into orders2 VALUES (new.*);
+commit;
+```
+Мы могли изначально исключить ручное разбиение таблицы, если бы мы спроектировали таблицу с партиционированием. Для этого надо было при создании таблицы указать 
+```
+CREATE TABLE orders (...) PARTITION BY RANGE (price);
+CREATE TABLE orders1 PARTITION OF orders FOR VALUES <= 499;
+CREATE TABLE orders2 PARTITION OF orders FOR VALUES > 499;
+```
 ## Задача 4
 
 Используя утилиту `pg_dump` создайте бекап БД `test_database`.
