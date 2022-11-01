@@ -44,8 +44,24 @@ vagrant@vagrant:~/06-db-05-elasticsearch$ sudo docker ps
 CONTAINER ID   IMAGE                                     COMMAND                  CREATED              STATUS              PORTS                                                                                  NAMES
 37f0f1ac5a88   ramireshab/elasticsearch-netology:1.0.0   "/bin/tini -- /usr/l…"   About a minute ago   Up About a minute   0.0.0.0:9200->9200/tcp, :::9200->9200/tcp, 0.0.0.0:9300->9300/tcp, :::9300->9300/tcp   elasticsearch
 
-vagrant@vagran:~/06-db-05-elasticsearch$ sudo docker exec -it 37f0f1ac5a88 bash -c "ls /" | jq -Rs
-"bin   dev  home  lib32\tlibx32\tmnt  proc  run\t srv  tmp  var\r\nboot  etc  lib\t lib64\tmedia\topt  root  sbin  sys  usr\r\n"
+vagrant@vagrant:~/06-db-05-elasticsearch$ curl localhost:9200
+{
+  "name" : "netology_test",
+  "cluster_name" : "docker-cluster",
+  "cluster_uuid" : "xYcG22SQTfiIzSAIpleKAQ",
+  "version" : {
+    "number" : "7.17.7",
+    "build_flavor" : "default",
+    "build_type" : "docker",
+    "build_hash" : "78dcaaa8cee33438b91eca7f5c7f56a70fec9e80",
+    "build_date" : "2022-10-17T15:29:54.167373105Z",
+    "build_snapshot" : false,
+    "lucene_version" : "8.11.1",
+    "minimum_wire_compatibility_version" : "6.8.0",
+    "minimum_index_compatibility_version" : "6.0.0-beta1"
+  },
+  "tagline" : "You Know, for Search"
+}
 ```
 
 Вот ссылка на dockerhub: https://hub.docker.com/repository/docker/ramireshab/elasticsearch-netology
