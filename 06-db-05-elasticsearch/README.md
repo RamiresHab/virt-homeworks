@@ -35,12 +35,20 @@
 Ответ:
 Я не смог загрузить контейнер с тэгом :7, поэтому воспользовался последним релизом седьмой версии :7.17.7
 ```
+vagrant@vagrant:~/06-db-05-elasticsearch$ cat Dockerfile 
+FROM elasticsearch:7.17.7
+RUN mkdir /var/lib/elasticsearch && chown elasticsearch:elasticsearch /var/lib/elasticsearch
+COPY --chown=elasticsearch:elasticsearch elasticsearch.yml /usr/share/elasticsearch/config/
+
 vagrant@vagrant:~/06-db-05-elasticsearch$ sudo docker ps
 CONTAINER ID   IMAGE                                     COMMAND                  CREATED              STATUS              PORTS                                                                                  NAMES
 37f0f1ac5a88   ramireshab/elasticsearch-netology:1.0.0   "/bin/tini -- /usr/l…"   About a minute ago   Up About a minute   0.0.0.0:9200->9200/tcp, :::9200->9200/tcp, 0.0.0.0:9300->9300/tcp, :::9300->9300/tcp   elasticsearch
-ant@vagrant:~/06-db-05-elasticsearch$ sudo docker exec -it 37f0f1ac5a88 bash -c "ls /" | jq -Rs
+
+vagrant@vagran:~/06-db-05-elasticsearch$ sudo docker exec -it 37f0f1ac5a88 bash -c "ls /" | jq -Rs
 "bin   dev  home  lib32\tlibx32\tmnt  proc  run\t srv  tmp  var\r\nboot  etc  lib\t lib64\tmedia\topt  root  sbin  sys  usr\r\n"
 ```
+
+Вот ссылка на dockerhub: https://hub.docker.com/repository/docker/ramireshab/elasticsearch-netology
 
 
 ## Задача 2
