@@ -159,6 +159,47 @@ vagrant@vagrant:~/06-db-05-elasticsearch$ curl -X GET "localhost:9200/_cluster/h
 Подсказки:
 - возможно вам понадобится доработать `elasticsearch.yml` в части директивы `path.repo` и перезапустить `elasticsearch`
 
+Ответ:
+```
+vagrant@vagrant:~/06-db-05-elasticsearch$ curl -X PUT "localhost:9200/_snapshot/netology_backup?pretty" -H 'Content-Type: application/json' -d'
+{              
+  "type": "fs",
+  "settings": {                                     
+    "location": "/usr/share/elasticsearch/snapshots"
+  }
+}
+'
+{
+  "acknowledged" : true
+}
+
+vagrant@vagrant:~/06-db-05-elasticsearch$ curl -X GET "localhost:9200/_cat/indices?pretty"
+green open .geoip_databases hyKhhw4BQEqSit0bsJhMTw 1 0 40 0 38.4mb 38.4mb
+green open test             YniCNgQXSnWyDLYyTzgwGQ 1 0  0 0   226b   226b
+
+vagrant@vagrant:~/06-db-05-elasticsearch$ sudo docker exec -it 8c39bdf78af8 bash -c "ls snapshots" 
+index-0       indices                          snap-gcxYnu7LTnGkh0AXYdSU3w.dat
+index.latest  meta-gcxYnu7LTnGkh0AXYdSU3w.dat
+
+vagrant@vagrant:~/06-db-05-elasticsearch$ curl -X GET "localhost:9200/_cat/indices?pretty"
+green open test-2           JqGvs19GTT6Q-rsQQg03ug 1 0  0 0   226b   226b
+green open .geoip_databases hyKhhw4BQEqSit0bsJhMTw 1 0 40 0 38.4mb 38.4mb
+
+vagrant@vagrant:~/06-db-05-elasticsearch$ curl -X POST "localhost:9200/_snapshot/netology_backup/my_snapshot_2022.11.01/_restore?pretty" -H 'Content-Type: application/json' -d'
+> {
+>   "indices": "test"
+> }
+> '
+{
+  "accepted" : true
+}
+
+vagrant@vagrant:~/06-db-05-elasticsearch$ curl -X GET "localhost:9200/_cat/indices?pretty"
+green open test-2           JqGvs19GTT6Q-rsQQg03ug 1 0  0 0   226b   226b
+green open .geoip_databases hyKhhw4BQEqSit0bsJhMTw 1 0 40 0 38.4mb 38.4mb
+green open test             _w-2XezYSzWYzypsovF0HA 1 0  0 0   226b   226b
+```
+
 ---
 
 ### Как cдавать задание
