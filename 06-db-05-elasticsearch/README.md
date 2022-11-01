@@ -44,7 +44,7 @@ vagrant@vagrant:~/06-db-05-elasticsearch$ sudo docker ps
 CONTAINER ID   IMAGE                                     COMMAND                  CREATED              STATUS              PORTS                                                                                  NAMES
 37f0f1ac5a88   ramireshab/elasticsearch-netology:1.0.0   "/bin/tini -- /usr/l…"   About a minute ago   Up About a minute   0.0.0.0:9200->9200/tcp, :::9200->9200/tcp, 0.0.0.0:9300->9300/tcp, :::9300->9300/tcp   elasticsearch
 
-vagrant@vagrant:~/06-db-05-elasticsearch$ curl localhost:9200
+vagrant@vagrant:~/06-db-05-elasticsearch$ curl localhost:9200/
 {
   "name" : "netology_test",
   "cluster_name" : "docker-cluster",
@@ -95,6 +95,39 @@ vagrant@vagrant:~/06-db-05-elasticsearch$ curl localhost:9200
 
 При проектировании кластера elasticsearch нужно корректно рассчитывать количество реплик и шард,
 иначе возможна потеря данных индексов, вплоть до полной, при деградации системы.
+
+Ответ:
+Список индексов и их статусов:
+```
+vagrant@vagrant:~/06-db-05-elasticsearch$ curl -X GET "localhost:9200/_cat/indices?pretty"
+green  open .geoip_databases 5DdTMuHMT-mgWoBc9-11nA 1 0 40 0 38.4mb 38.4mb
+green  open ind-1            DrVdqJxZSNSRslQXbnQUEA 1 0  0 0   226b   226b
+yellow open ind-3            gRxb_vcuQwmR4lH2RjlaxA 4 2  0 0   904b   904b
+yellow open ind-2            3Q0HmrTVQ1iqD9yolGdJQw 2 1  0 0   452b   452b
+```
+
+Состояние кластера:
+```
+vagrant@vagrant:~/06-db-05-elasticsearch$ curl -X GET "localhost:9200/_cluster/health?pretty"
+{
+  "cluster_name" : "docker-cluster",
+  "status" : "yellow",
+  "timed_out" : false,
+  "number_of_nodes" : 1,
+  "number_of_data_nodes" : 1,
+  "active_primary_shards" : 10,
+  "active_shards" : 10,
+  "relocating_shards" : 0,
+  "initializing_shards" : 0,
+  "unassigned_shards" : 10,
+  "delayed_unassigned_shards" : 0,
+  "number_of_pending_tasks" : 0,
+  "number_of_in_flight_fetch" : 0,
+  "task_max_waiting_in_queue_millis" : 0,
+  "active_shards_percent_as_number" : 50.0
+}
+```
+Часть индексов и кластеров находится в состоянии yellow потому, что есть unattached реплики. А реплики в этом состоянии потому, что у нас всего одна нода, их некуда приаттачить.
 
 ## Задача 3
 
