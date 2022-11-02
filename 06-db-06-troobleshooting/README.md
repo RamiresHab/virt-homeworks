@@ -11,6 +11,23 @@
 - напишите список операций, которые вы будете производить для остановки запроса пользователя
 - предложите вариант решения проблемы с долгими (зависающими) запросами в MongoDB
 
+Ответ:
+1. Узнаю номер запроса командой db.currentOp({"secs_running":{$gte:5}}). Завершу операцию запросом db.killOp(<opId>), где opId это ID нужной операции.
+2. Нужно запросить slow log и посмотреть, какие именно запросы долго обрабатываются. 
+```
+curl --user '{PUBLIC-KEY}:{PRIVATE-KEY}' --digest \
+ --header 'Accept: application/json' \
+ --include \
+ --request GET 'https://{OPSMANAGER-HOST}:{PORT}/api/public/v1.0/groups/{PROJECT-ID}/hosts/{HOST-ID}/performanceAdvisor/slowQueryLogs?pretty=true'
+ ```
+ После этого надо применить explain к проблемным запросам, чтобы локализовать проблему. 
+ Также можно добавлять таймер maxTimeMS на максимальное выполнение операции на выполнение проблемных запросов
+ ```
+ db.runCommand( { distinct: "collection",
+                 key: "city",
+                 maxTimeMS: 45 } )
+```
+
 ## Задача 2
 
 Перед выполнением задания познакомьтесь с документацией по [Redis latency troobleshooting](https://redis.io/topics/latency).
@@ -24,6 +41,9 @@
 - Redis блокирует операции записи
 
 Как вы думаете, в чем может быть проблема?
+
+Ответ:
+
  
 ## Задача 3
 
