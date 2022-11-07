@@ -37,6 +37,58 @@ resource "yandex_storage_bucket" "test" {
   bucket     = "netbucket"
   ```
 
+<details>
+<summary>Результаты выполнения terraform plan</summary>
+
+```
+vagrant@vagrant:~/07-terraform-03-basic$ terraform apply -auto-approve
+yandex_iam_service_account.sa: Refreshing state... [id=aje60ggq35irh085pii6]
+yandex_resourcemanager_folder_iam_member.sa-editor: Refreshing state... [id=b1gjbcdp4ij0bkm2gt1q/storage.editor/serviceAccount:aje60ggq35irh085pii6]
+yandex_iam_service_account_static_access_key.sa-static-key: Refreshing state... [id=aje274rpqlr4glg59v1g]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # yandex_storage_bucket.test will be created
+  + resource "yandex_storage_bucket" "test" {
+      + access_key            = "YCAJE_IqM5H1BMzVSUC51XLpR"
+      + acl                   = "private"
+      + bucket                = "netbucket"
+      + bucket_domain_name    = (known after apply)
+      + default_storage_class = (known after apply)
+      + folder_id             = (known after apply)
+      + force_destroy         = false
+      + id                    = (known after apply)
+      + secret_key            = (sensitive value)
+      + website_domain        = (known after apply)
+      + website_endpoint      = (known after apply)
+
+      + anonymous_access_flags {
+          + list = (known after apply)
+          + read = (known after apply)
+        }
+
+      + versioning {
+          + enabled = (known after apply)
+        }
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+yandex_storage_bucket.test: Creating...
+yandex_storage_bucket.test: Still creating... [10s elapsed]
+yandex_storage_bucket.test: Still creating... [20s elapsed]
+yandex_storage_bucket.test: Still creating... [30s elapsed]
+yandex_storage_bucket.test: Still creating... [40s elapsed]
+yandex_storage_bucket.test: Still creating... [50s elapsed]
+yandex_storage_bucket.test: Still creating... [1m0s elapsed]
+yandex_storage_bucket.test: Creation complete after 1m2s [id=netbucket]
+
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+```
+  
+</details>
 
 ## Задача 2. Инициализируем проект и создаем воркспейсы. 
 
@@ -56,6 +108,9 @@ dynamodb.
 В виде результата работы пришлите:
 * Вывод команды `terraform workspace list`.
 * Вывод команды `terraform plan` для воркспейса `prod`.  
+
+Ответ:
+
 
 ---
 
