@@ -326,7 +326,8 @@ Changes to Outputs:
 ```
    
 </details>
-
+1. Мы можем создать образ при помощи инструмента Packer.
+1. Вот ссылка на репозиторий: https://github.com/RamiresHab/cloud-terraform
  
 ---
 
