@@ -53,7 +53,7 @@ Terraform will perform the following actions:
 
   # yandex_storage_bucket.test will be created
   + resource "yandex_storage_bucket" "test" {
-      + access_key            = "YCAJE_IqM5H1BMzVSUC51XLpR"
+      + access_key            = "YC<secret>MzVSUC51XLpR"
       + acl                   = "private"
       + bucket                = "netbucket"
       + bucket_domain_name    = (known after apply)
