@@ -37,6 +37,71 @@ AWS предоставляет достаточно много бесплатн�
 4. Воспользуйтесь [инструкцией](https://registry.terraform.io/providers/yandex-cloud/yandex/latest/docs) на сайте терраформа, что бы 
 не указывать авторизационный токен в коде, а терраформ провайдер брал его из переменных окружений.
 
+Ответ:
+```
+vagrant@vagrant:~/cloud-terraform$ ll
+total 20
+drwxrwxr-x  3 vagrant vagrant 4096 Nov  7 08:28 ./
+drwxr-xr-x 22 vagrant vagrant 4096 Nov  7 08:23 ../
+-rw-rw-r--  1 vagrant vagrant  405 Nov  7 08:27 main.tf
+drwxr-xr-x  3 vagrant vagrant 4096 Nov  7 08:28 .terraform/
+-rw-r--r--  1 vagrant vagrant  258 Nov  7 08:28 .terraform.lock.hcl
+
+vagrant@vagrant:~/cloud-terraform$ cat main.tf 
+terraform {
+  required_providers {
+    yandex = {
+      source = "yandex-cloud/yandex"
+    }
+  }
+  required_version = ">= 0.13"
+}
+
+provider "yandex" {
+  token                    = "y0_AgAAAXXXXXXXXXQAAAADR27AOgoJoEXJFQuGnPKobYU-srFzlQ1I"
+  cloud_id                 = "b1gchXXXXXi0srgejjo"
+  folder_id                = "b1gjbcdp4iXXXXXXt1q"
+  zone                     = "ru-central1-a"
+}
+
+vagrant@vagrant:~/cloud-terraform$ terraform init
+
+Initializing the backend...
+
+Initializing provider plugins...
+- Finding latest version of yandex-cloud/yandex...
+- Installing yandex-cloud/yandex v0.81.0...
+- Installed yandex-cloud/yandex v0.81.0 (unauthenticated)
+
+Terraform has created a lock file .terraform.lock.hcl to record the provider
+selections it made above. Include this file in your version control repository
+so that Terraform can guarantee to make the same selections by default when
+you run "terraform init" in the future.
+
+╷
+│ Warning: Incomplete lock file information for providers
+│ 
+│ Due to your customized provider installation methods, Terraform was forced to calculate lock file checksums locally for the following providers:
+│   - yandex-cloud/yandex
+│ 
+│ The current .terraform.lock.hcl file only includes checksums for linux_amd64, so Terraform running on another platform will fail to install these providers.
+│ 
+│ To calculate additional checksums for another platform, run:
+│   terraform providers lock -platform=linux_amd64
+│ (where linux_amd64 is the platform to generate)
+╵
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+```
+
 ## Задача 2. Создание aws ec2 или yandex_compute_instance через терраформ. 
 
 1. В каталоге `terraform` вашего основного репозитория, который был создан в начале курсе, создайте файл `main.tf` и `versions.tf`.
