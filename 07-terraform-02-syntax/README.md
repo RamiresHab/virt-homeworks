@@ -133,6 +133,200 @@ commands will detect it and remind you to do so if necessary.
 В качестве результата задания предоставьте:
 1. Ответ на вопрос: при помощи какого инструмента (из разобранных на прошлом занятии) можно создать свой образ ami?
 1. Ссылку на репозиторий с исходной конфигурацией терраформа.  
+
+Ответ:
+<details>
+<summary>Результаты выполнения terraform plan</summary>
+
+```
+   vagrant@vagrant:~/cloud-terraform$ terraform plan
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # yandex_compute_instance.vm-1 will be created
+  + resource "yandex_compute_instance" "vm-1" {
+      + created_at                = (known after apply)
+      + folder_id                 = (known after apply)
+      + fqdn                      = (known after apply)
+      + hostname                  = (known after apply)
+      + id                        = (known after apply)
+      + metadata                  = {
+          + "ssh-keys" = <<-EOT
+                ubuntu:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDGzPUNN7E4SZLMzBtu9HQ9q3pvqYH7FvLs8qDRTGoW52bwDp/MSmfMuQxCv96ZRphBDzTk/plAWEean3294fbj4uuJTDAV7oIWsyj+Bgae71dukCM/jxZ6N/u2xgkOnxQ5gVDLuu1zpSTCoFRzlbof7mRHextWQzqfAci33Zv0N4031iTS5ZURkdYrwqcy5qrXUIpDc1bTnlA4szSDBcfOdRZJfEGErlhkI4P1FPOu9bKNkL4OaM+tSdnDcv5gFHF9Rfv3wQt23IkSIotKS4k0g9rndiGtJo70Wd1BLt8PIHRdY9x5bHiIm5pBZuGhQn5zCVO6DTpgwszSj/nWJr/IMOxBX2h3jZzt2sKWv4PucVwwc641sH53g2hIyjOOgyxq5R75/IuaEi8K7JVje1QiCoZuYcnNkTog7jzlFZiGRukfbvrx2zupXjsTLjI2kUWwpv/aHg1jB/KWi2FwKJxH5e+Wx9m2/htSK8oC+GDkvnMga7V2ZRpU6XSyY7fbZcs= vagrant@vagrant
+            EOT
+        }
+      + name                      = "terraform1"
+      + network_acceleration_type = "standard"
+      + platform_id               = "standard-v1"
+      + service_account_id        = (known after apply)
+      + status                    = (known after apply)
+      + zone                      = (known after apply)
+
+      + boot_disk {
+          + auto_delete = true
+          + device_name = (known after apply)
+          + disk_id     = (known after apply)
+          + mode        = (known after apply)
+
+          + initialize_params {
+              + block_size  = (known after apply)
+              + description = (known after apply)
+              + image_id    = "fd8haecqq3rn9ch89eua"
+              + name        = (known after apply)
+              + size        = (known after apply)
+              + snapshot_id = (known after apply)
+              + type        = "network-hdd"
+            }
+        }
+
+      + network_interface {
+          + index              = (known after apply)
+          + ip_address         = (known after apply)
+          + ipv4               = true
+          + ipv6               = (known after apply)
+          + ipv6_address       = (known after apply)
+          + mac_address        = (known after apply)
+          + nat                = true
+          + nat_ip_address     = (known after apply)
+          + nat_ip_version     = (known after apply)
+          + security_group_ids = (known after apply)
+          + subnet_id          = (known after apply)
+        }
+
+      + placement_policy {
+          + host_affinity_rules = (known after apply)
+          + placement_group_id  = (known after apply)
+        }
+
+      + resources {
+          + core_fraction = 100
+          + cores         = 2
+          + memory        = 2
+        }
+
+      + scheduling_policy {
+          + preemptible = (known after apply)
+        }
+    }
+
+  # yandex_compute_instance.vm-2 will be created
+  + resource "yandex_compute_instance" "vm-2" {
+      + created_at                = (known after apply)
+      + folder_id                 = (known after apply)
+      + fqdn                      = (known after apply)
+      + hostname                  = (known after apply)
+      + id                        = (known after apply)
+      + metadata                  = {
+          + "ssh-keys" = <<-EOT
+                ubuntu:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDGzPUNN7E4SZLMzBtu9HQ9q3pvqYH7FvLs8qDRTGoW52bwDp/MSmfMuQxCv96ZRphBDzTk/plAWEean3294fbj4uuJTDAV7oIWsyj+Bgae71dukCM/jxZ6N/u2xgkOnxQ5gVDLuu1zpSTCoFRzlbof7mRHextWQzqfAci33Zv0N4031iTS5ZURkdYrwqcy5qrXUIpDc1bTnlA4szSDBcfOdRZJfEGErlhkI4P1FPOu9bKNkL4OaM+tSdnDcv5gFHF9Rfv3wQt23IkSIotKS4k0g9rndiGtJo70Wd1BLt8PIHRdY9x5bHiIm5pBZuGhQn5zCVO6DTpgwszSj/nWJr/IMOxBX2h3jZzt2sKWv4PucVwwc641sH53g2hIyjOOgyxq5R75/IuaEi8K7JVje1QiCoZuYcnNkTog7jzlFZiGRukfbvrx2zupXjsTLjI2kUWwpv/aHg1jB/KWi2FwKJxH5e+Wx9m2/htSK8oC+GDkvnMga7V2ZRpU6XSyY7fbZcs= vagrant@vagrant
+            EOT
+        }
+      + name                      = "terraform2"
+      + network_acceleration_type = "standard"
+      + platform_id               = "standard-v1"
+      + service_account_id        = (known after apply)
+      + status                    = (known after apply)
+      + zone                      = (known after apply)
+
+      + boot_disk {
+          + auto_delete = true
+          + device_name = (known after apply)
+          + disk_id     = (known after apply)
+          + mode        = (known after apply)
+
+          + initialize_params {
+              + block_size  = (known after apply)
+              + description = (known after apply)
+              + image_id    = "fd8haecqq3rn9ch89eua"
+              + name        = (known after apply)
+              + size        = (known after apply)
+              + snapshot_id = (known after apply)
+              + type        = "network-hdd"
+            }
+        }
+
+      + network_interface {
+          + index              = (known after apply)
+          + ip_address         = (known after apply)
+          + ipv4               = true
+          + ipv6               = (known after apply)
+          + ipv6_address       = (known after apply)
+          + mac_address        = (known after apply)
+          + nat                = true
+          + nat_ip_address     = (known after apply)
+          + nat_ip_version     = (known after apply)
+          + security_group_ids = (known after apply)
+          + subnet_id          = (known after apply)
+        }
+
+      + placement_policy {
+          + host_affinity_rules = (known after apply)
+          + placement_group_id  = (known after apply)
+        }
+
+      + resources {
+          + core_fraction = 100
+          + cores         = 4
+          + memory        = 4
+        }
+
+      + scheduling_policy {
+          + preemptible = (known after apply)
+        }
+    }
+
+  # yandex_iam_service_account.roman will be created
+  + resource "yandex_iam_service_account" "roman" {
+      + created_at  = (known after apply)
+      + description = "service account to manage VMs"
+      + folder_id   = (known after apply)
+      + id          = (known after apply)
+      + name        = "roman"
+    }
+
+  # yandex_vpc_network.network-1 will be created
+  + resource "yandex_vpc_network" "network-1" {
+      + created_at                = (known after apply)
+      + default_security_group_id = (known after apply)
+      + folder_id                 = (known after apply)
+      + id                        = (known after apply)
+      + labels                    = (known after apply)
+      + name                      = "network1"
+      + subnet_ids                = (known after apply)
+    }
+
+  # yandex_vpc_subnet.subnet-1 will be created
+  + resource "yandex_vpc_subnet" "subnet-1" {
+      + created_at     = (known after apply)
+      + folder_id      = (known after apply)
+      + id             = (known after apply)
+      + labels         = (known after apply)
+      + name           = "subnet1"
+      + network_id     = (known after apply)
+      + v4_cidr_blocks = [
+          + "192.168.10.0/24",
+        ]
+      + v6_cidr_blocks = (known after apply)
+      + zone           = "ru-central1-a"
+    }
+
+Plan: 5 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + external_ip_address_vm_1 = (known after apply)
+  + external_ip_address_vm_2 = (known after apply)
+  + internal_ip_address_vm_1 = (known after apply)
+  + internal_ip_address_vm_2 = (known after apply)
+  + yc_account_ID            = (known after apply)
+  + yc_subnet                = "subnet1"
+  + yc_zone                  = (known after apply)
+```
+   
+</details>
+
  
 ---
 
