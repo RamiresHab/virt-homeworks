@@ -37,8 +37,8 @@
 Ответ: 
 
 Ссылки на файлы
-https://github.com/biker11rus/virt-homeworks/blob/virt-11/07-terraform-04-teamwork/server.yaml
-https://github.com/biker11rus/virt-homeworks/blob/virt-11/07-terraform-04-teamwork/atlantis.yaml
+https://github.com/RamiresHab/virt-homeworks/blob/master/07-terraform-04-teamwork/atlantis.yaml
+https://github.com/RamiresHab/virt-homeworks/blob/master/07-terraform-04-teamwork/server.yaml
 
 ## Задача 3. Знакомство с каталогом модулей. 
 
