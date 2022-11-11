@@ -36,6 +36,10 @@
 
 Ответ: 
 
+Ссылки на файлы
+https://github.com/biker11rus/virt-homeworks/blob/virt-11/07-terraform-04-teamwork/server.yaml
+https://github.com/biker11rus/virt-homeworks/blob/virt-11/07-terraform-04-teamwork/atlantis.yaml
+
 ## Задача 3. Знакомство с каталогом модулей. 
 
 1. В [каталоге модулей](https://registry.terraform.io/browse/modules) найдите официальный модуль от aws для создания
