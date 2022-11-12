@@ -7,6 +7,16 @@
 1. Воспользуйтесь инструкций с официального сайта: [https://golang.org/](https://golang.org/).
 2. Так же для тестирования кода можно использовать песочницу: [https://play.golang.org/](https://play.golang.org/).
 
+Ответ:
+```
+ramires@Romans-MacBook-Air virt-homeworks % brew info go
+==> go: stable 1.19.3 (bottled), HEAD
+Open source programming language to build simple/reliable/efficient software
+https://go.dev/
+/opt/homebrew/Cellar/go/1.19.3 (12,444 files, 629MB) *
+  Poured from bottle on 2022-11-12 at 14:23:02
+```
+
 ## Задача 2. Знакомство с gotour.
 У Golang есть обучающая интерактивная консоль [https://tour.golang.org/](https://tour.golang.org/). 
 Рекомендуется изучить максимальное количество примеров. В консоли уже написан необходимый код, 
