@@ -58,6 +58,7 @@ https://go.dev/
 
 Ответ:
 1. Вариант решения с вводом значения [вот тут](https://github.com/RamiresHab/virt-homeworks/blob/master/07-terraform-05-golang/HW3/hw3_1a.go). Вариант с заданием значения переменной в коде [вот](https://github.com/RamiresHab/virt-homeworks/blob/master/07-terraform-05-golang/HW3/hw3_1b.go)
+2. Решение задачи [тут](https://github.com/RamiresHab/virt-homeworks/blob/master/07-terraform-05-golang/HW3/hw3_2.go)
 
 ## Задача 4. Протестировать код (не обязательно).
 
