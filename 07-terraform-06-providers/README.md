@@ -18,6 +18,22 @@
     * С каким другим параметром конфликтует `name`? Приложите строчку кода, в которой это указано.
     * Какая максимальная длина имени? 
     * Какому регулярному выражению должно подчиняться имя? 
+
+Ответ:
+1.
+   > [resource](https://github.com/hashicorp/terraform-provider-aws/blob/caf5a742745561d36e6bd6c3032f7420e31f3518/internal/provider/provider.go#L909)
+   >
+   > [data_source](https://github.com/hashicorp/terraform-provider-aws/blob/caf5a742745561d36e6bd6c3032f7420e31f3518/internal/provider/provider.go#L425)
+
+1.  * С каким другим параметром конфликтует `name`? Приложите строчку кода, в которой это указано.
+   > [ConflictsWith: []string{"name_prefix"},](https://github.com/hashicorp/terraform-provider-aws/blob/main/internal/service/sqs/queue.go#L87)
+
+    * Какая максимальная длина имени?
+    * Какому регулярному выражению должно подчиняться имя?
+        > [Максимальная длина имени с расширением ](https://github.com/hashicorp/terraform-provider-aws/blob/167536a0a72cd6294c7bd3eed85d36232e0d2ef5/internal/service/sqs/queue.go#L425)
+        >
+        > [Максимальная длина имени без расширения](https://github.com/hashicorp/terraform-provider-aws/blob/167536a0a72cd6294c7bd3eed85d36232e0d2ef5/internal/service/sqs/queue.go#L427)
+
     
 ## Задача 2. (Не обязательно) 
 В рамках вебинара и презентации мы разобрали как создать свой собственный провайдер на примере кофемашины. 
