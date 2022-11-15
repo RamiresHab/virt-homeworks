@@ -20,19 +20,21 @@
     * Какому регулярному выражению должно подчиняться имя? 
 
 Ответ:
-1.
-   > [resource](https://github.com/hashicorp/terraform-provider-aws/blob/caf5a742745561d36e6bd6c3032f7420e31f3518/internal/provider/provider.go#L909)
+1. Найдите, где перечислены все доступные `resource` и `data_source`, приложите ссылку на эти строки в коде на 
+гитхабе
+   > [resource](https://github.com/hashicorp/terraform-provider-aws/blob/main/internal/provider/provider.go#L941)
    >
-   > [data_source](https://github.com/hashicorp/terraform-provider-aws/blob/caf5a742745561d36e6bd6c3032f7420e31f3518/internal/provider/provider.go#L425)
+   > [data_source](https://github.com/hashicorp/terraform-provider-aws/blob/main/internal/provider/provider.go#L421)
 
-1.  * С каким другим параметром конфликтует `name`? Приложите строчку кода, в которой это указано.
-   > [ConflictsWith: []string{"name_prefix"},](https://github.com/hashicorp/terraform-provider-aws/blob/main/internal/service/sqs/queue.go#L87)
+1.  
+* С каким другим параметром конфликтует `name`? Приложите строчку кода, в которой это указано.
+   > [ConflictsWith: []string{"name_prefix"},](https://github.com/hashicorp/terraform-provider-aws/blob/main/internal/service/sqs/queue.go#L88)
 
-    * Какая максимальная длина имени?
-    * Какому регулярному выражению должно подчиняться имя?
-        > [Максимальная длина имени с расширением ](https://github.com/hashicorp/terraform-provider-aws/blob/167536a0a72cd6294c7bd3eed85d36232e0d2ef5/internal/service/sqs/queue.go#L425)
-        >
-        > [Максимальная длина имени без расширения](https://github.com/hashicorp/terraform-provider-aws/blob/167536a0a72cd6294c7bd3eed85d36232e0d2ef5/internal/service/sqs/queue.go#L427)
+* Какая максимальная длина имени?
+* Какому регулярному выражению должно подчиняться имя?
+   > [Максимальная длина имени с расширением и регулярка](https://github.com/hashicorp/terraform-provider-aws/blob/main/internal/service/sqs/queue.go#L431)
+   >
+   > [Максимальная длина имени без расширения и регулярка](https://github.com/hashicorp/terraform-provider-aws/blob/main/internal/service/sqs/queue.go#L433)
 
     
 ## Задача 2. (Не обязательно) 
